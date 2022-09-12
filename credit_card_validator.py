@@ -18,6 +18,12 @@ def compute_check_digit(numbers_list, card_number_length):
 		result += new_number
 	return 10 - (result % 10)
 	
+def final_validation(card_number, card_number_length):
+	numbers_list = [int(ch) for ch in card_number]
+	check_digit = numbers_list.pop()
+	computed_check_digit = compute_check_digit(numbers_list, card_number_length)
+	return check_digit == computed_check_digit
+
 def validate(card_number):
 	card_number_length = len(card_number) - 1
 
@@ -25,9 +31,4 @@ def validate(card_number):
 		return False
 	elif card_number_length != 15:
 		return False
-
-	numbers_list = [int(ch) for ch in card_number]
-	check_digit = numbers_list.pop()
-	
-	computed_check_digit = compute_check_digit(numbers_list, card_number_length)
-	return check_digit == computed_check_digit
+	return final_validation(card_number, card_number_length)
