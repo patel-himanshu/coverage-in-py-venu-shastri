@@ -1,3 +1,15 @@
+def find_multiplier(card_number_length, index):
+	if ((card_number_length - index) % 2 == 0):
+		return 1
+	else:
+		return 2
+
+def find_new_number(number, multiplier):
+	new_number = int(number) * multiplier
+	if new_number > 9:
+		return (new_number % 10) + (new_number // 10)
+	return new_number
+
 def validate(card_number):
 	card_number_length = len(card_number) - 1
 
@@ -11,15 +23,8 @@ def validate(card_number):
 	result = 0
 	
 	for (index, number) in enumerate(numbers_list):
-		if ((card_number_length - index) % 2 == 0):
-			multiplier = 1
-		else:
-			multiplier = 2
-		
-		new_number = int(number) * multiplier
-		if new_number > 9:
-			new_number = (new_number % 10) + (new_number // 10)
-
+		multiplier = find_multiplier(card_number_length, index)	
+		new_number = find_new_number(number, multiplier)
 		result += new_number
 	
 	computed_check_digit = 10 - (result % 10)
