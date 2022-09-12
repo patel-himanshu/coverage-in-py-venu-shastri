@@ -45,7 +45,7 @@ class TypewiseTest(unittest.TestCase):
 
 	@patch('typewise_alert.send_to_email')
 	def test_check_and_alert_email(self, mock):
-		batteryChar = { 'coolingType': 'HI_ACTIVE_COOLING'}
+		batteryChar = { 'coolingType': 'HI_ACTIVE_COOLING' }
 		typewise_alert.check_and_alert('TO_EMAIL', batteryChar, 30)
 		self.assertTrue(mock.called)
 
